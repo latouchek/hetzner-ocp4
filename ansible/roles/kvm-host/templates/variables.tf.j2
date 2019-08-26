@@ -10,7 +10,21 @@ data "template_file" "user_data_bootstrap" {
 
 }
 
+variable "ssh_key_pair" {
+  default = "ocp-key"
+}
 
+variable "availability_zone" {
+	default = "nova"
+}
+
+variable "security_group" {
+	default = "allowall"
+}
+
+variable "network" {
+	default  = "public-net"
+}
 variable "namemaster" {
    type = "list"
    default = ["master-0","master-1","master-2"]
