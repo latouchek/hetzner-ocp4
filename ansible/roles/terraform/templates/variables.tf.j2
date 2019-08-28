@@ -1,0 +1,61 @@
+openstack_user_name = "admin"
+openstack_tenant_name = "admin"
+openstack_password = "ayCMmnkyHHGpbkWWuHQVKkKpy"
+openstack_auth_url = "http://192.168.122.18:5000//v3"
+
+
+variable "openstack_user_name" {}
+variable "openstack_tenant_name" {}
+variable "openstack_password" {}
+variable "openstack_auth_url" {}
+
+
+data "template_file" "user_data_master" {
+  template = "${file("${var.install-dir}/master.ign")}"
+}
+data "template_file" "user_data_worker" {
+  template = "${file("${var.install-dir}/worker.ign")}"
+}
+data "template_file" "user_data_bootstrap" {
+  template = "${file("${path.module}/bootstrap-append.ign")}"
+
+}
+
+variable "ssh_key_pair" {
+  default = "ocp-key"
+}
+
+variable "availability_zone" {
+	default = "nova"
+}
+
+variable "security_group" {
+	default = "allowall"
+}
+variable "masterflavor" {
+	default = "m1.large"
+}
+variable "workerflavor" {
+	default = "m1.large"
+}
+variable "network" {
+	default  = "public-net"
+}
+variable "namemaster" {
+   type = "list"
+   default = ["master-0","master-1","master-2"]
+ }
+variable "nameworker" {
+    type = "list"
+    default = ["worker-0","worker-1","worker-2"]
+}
+
+variable "ipmaster" {
+  type = "list"
+  default = ["{{host_master_0_ip}}", "{{host_master_1_ip}}", "{{host_master_2_ip}}"]
+}
+
+variable "ipworker" {
+  type = "list"
+  default = ["192.168.222.34", "192.168.222.35", "192.168.222.36"]
+}

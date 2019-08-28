@@ -5,4 +5,4 @@
   - ../cluster.yml
   roles:
     - init
-    - kvm-host
+    - terraform

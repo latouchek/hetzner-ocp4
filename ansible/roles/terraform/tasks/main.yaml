@@ -1,0 +1,3 @@
+- include: prepare-terraformenv.yml
+- name: upgrade redhat
+  yum: name=* state=latest
