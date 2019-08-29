@@ -13,8 +13,8 @@ $TTL 60
 $ORIGIN {{cluster_name}}.{{public_domain}}.
 $TTL 1
 ; {{ subnet }}.0//{{ cidr }} - A records
-api.{{cluster_name}}.{{public_domain}}.          IN    A    {{ subnet }}.1
-api-int.{{cluster_name}}.{{public_domain}}.      IN    A    {{ subnet }}.1
+api.{{cluster_name}}.{{public_domain}}.          IN    A    {{ subnet }}.29
+api-int.{{cluster_name}}.{{public_domain}}.      IN    A    {{ subnet }}.29
 bootstrap.{{cluster_name}}.{{public_domain}}.    IN    A    {{ host_bootstrap_ip }}
 master-0.{{cluster_name}}.{{public_domain}}.     IN    A    {{ host_master_0_ip }}
 master-1.{{cluster_name}}.{{public_domain}}.     IN    A    {{ host_master_1_ip }}

@@ -2,7 +2,7 @@
 
 
 data "openstack_images_image_v2" "rhelcos" {
-  name = "rhcos41"
+  name = "rhcos42"
   most_recent = true
 }
 
@@ -31,7 +31,7 @@ resource "openstack_compute_servergroup_v2" "mysg" {
 
 resource "openstack_compute_instance_v2" "bootstrap" {
   name = "bootstrap"
-  user_data = "${file("${var.install-dir}/bootstrap-append.ign")}"
+  user_data = "${file("bootstrap-append.ign")}"
   flavor_name = "m1.large"
   key_pair = "${var.ssh_key_pair}"
   security_groups = ["${var.security_group}"]
@@ -53,6 +53,7 @@ resource "openstack_compute_instance_v2" "bootstrap" {
 
 resource "openstack_compute_instance_v2" "ocpworkerVM" {
   name = "${element(var.nameworker, count.index)}"
+  depends_on = [openstack_compute_instance_v2.bootstrap,openstack_compute_instance_v2.ocpmasterVM]
   user_data = "${file("${var.install-dir}/worker.ign")}"
   flavor_name = "m1.large"
   key_pair = "${var.ssh_key_pair}"
@@ -73,13 +74,13 @@ resource "openstack_compute_instance_v2" "ocpworkerVM" {
     delete_on_termination = true
   }
 
-  block_device {
-    source_type           = "blank"
-    destination_type      = "volume"
-    volume_size           = 6
-    boot_index            = 1
-    delete_on_termination = true
-  }
+#  block_device {
+#    source_type           = "blank"
+#    destination_type      = "volume"
+#    volume_size           = 6
+#    boot_index            = 1
+#    delete_on_termination = true
+#  }
   #block_device {
   #  source_type           = "blank"
   #  destination_type      = "volume"
@@ -98,8 +99,9 @@ output "node" {
 }
 resource "openstack_compute_instance_v2" "ocpmasterVM" {
   name = "${element(var.namemaster, count.index)}"
+  depends_on = [openstack_compute_instance_v2.bootstrap]
   user_data = "${file("${var.install-dir}/master.ign")}"
-  flavor_name = "${var.flavormaster}"
+  flavor_name = "${var.masterflavor}"
   key_pair = "${var.ssh_key_pair}"
   security_groups = ["${var.security_group}"]
   network {
@@ -118,13 +120,13 @@ resource "openstack_compute_instance_v2" "ocpmasterVM" {
     delete_on_termination = true
   }
 
-  block_device {
-    source_type           = "blank"
-    destination_type      = "volume"
-    volume_size           = 6
-    boot_index            = 1
-    delete_on_termination = true
-  }
+#  block_device {
+#    source_type           = "blank"
+#    destination_type      = "volume"
+#    volume_size           = 6
+#    boot_index            = 1
+#    delete_on_termination = true
+#  }
   #block_device {
   #  source_type           = "blank"
   #  destination_type      = "volume"

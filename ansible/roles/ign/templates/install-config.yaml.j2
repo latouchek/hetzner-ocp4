@@ -23,3 +23,44 @@ pullSecret:
   '{{ image_pull_secret }}'
 sshKey: |
   {{ ssh_public_key }}
+additionalTrustBundle: |
+    -----BEGIN CERTIFICATE-----
+    MIIFvzCCA6egAwIBAgIUbQij23YD54Jkok2rtW1NQYNNDv0wDQYJKoZIhvcNAQEL
+    BQAwbzELMAkGA1UEBhMCRkkxETAPBgNVBAgMCEhFTFNJTktJMREwDwYDVQQHDAhI
+    RUxTSU5LSTENMAsGA1UECgwEVGVzdDEPMA0GA1UECwwGUmVkaGF0MRowGAYDVQQD
+    DBFiYXN0aW9uLmxhYi5sb2NhbDAeFw0xOTA4MjgxNDUxMjhaFw0yMDA4MjcxNDUx
+    MjhaMG8xCzAJBgNVBAYTAkZJMREwDwYDVQQIDAhIRUxTSU5LSTERMA8GA1UEBwwI
+    SEVMU0lOS0kxDTALBgNVBAoMBFRlc3QxDzANBgNVBAsMBlJlZGhhdDEaMBgGA1UE
+    AwwRYmFzdGlvbi5sYWIubG9jYWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIK
+    AoICAQDBD3VLqPPh3wEPeT+HVt4Tjon0JXWn+FvQFhf6ghzuwDz1k4XIo1ZTLmaq
+    obPkNe6yBYyuhRPbufZlzbhjnlnQndmHhA/ZxBTJZqcXj9Ng3czL6uyF+t+HFBN1
+    XOLY7zZB3VsvKoM0emYkfrK5si/wkfTnGsbJtwr2b7EsdOI9FpS0IbfL6Es26cvz
+    uj5p8PqXiXPeEbRuyqFyGSyqqdVeBkEFTNTlE1dUm6Qmmj2O+Fkb6Il69tC9Wg8f
+    JLqg288VlIgJvhamGe4ye8YX1vqMsa2wEjNqlaPaUBv2AliKYwuDlNJKTxNGwLV/
+    x35DbwtoGgCgbbGYLa7nh21fOBvgvVDAo4Dwvf9SygtUvkG5ILx9qqOwSi8TgZRx
+    pzTRcmUZRHiC32abP3jrSnJPXqJZnxyl6SP5rJOmMVuv3S8ab4QiPcSs3R3ndmuh
+    qbzzjRHHcUhTZi1nZfsiNxmxaDpfm4hZMD1seyC9nH9L3N1tUYXMBfeceVBNiWVB
+    TnyPEvbWrsGyYc+T8PLTQCm4Iwm6q+300hqXd6Vdxg6aBTHLKd+LpinTL5B86iAS
+    SldIxHbMcA5PC0lJkxyNGDQgawrjBbOhoFrnTTDf18jPJym//XqE7twX1sOVxL86
+    6ZeXybcx8pJcsiEzWryfqL1cSV193pjRPun33J37+uiz+1hmvwIDAQABo1MwUTAd
+    BgNVHQ4EFgQUggOXqiQlyM/DF6dy0EdItPHlMrswHwYDVR0jBBgwFoAUggOXqiQl
+    yM/DF6dy0EdItPHlMrswDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOC
+    AgEAwD8z45KoK/i4ZUexPWhzLDPsDDlKppHuMl9uHXf399ON/A5wtb4IKeHrjZk5
+    yZDGWrPPm/SHgur5NgnH/C/FT0lwm15x5sunJW136UMNYQMHYvsQETNFZkH00e73
+    lEwcFDS0A43ANVY5XFa1NmsRJv+98NImvoLMJigPisqqFlUqmP7Uqx5UhMufOqMQ
+    mOqZJRFspkgqOPJ94azIKCcwecQrxOW0hFEyK89+UdmfhoxFI1UXkzpcfEE700/N
+    pCxreqTkTr16omUL0GwV0qlmZK6C+3PaGw8+QZ7ZqCd48Gy6di61DxjIL+iAhKrp
+    BDOqhdCOjVQPAcgkGvjsTfOafuIpjS7NgFL7yEFVC2C8nweiI6UgpcAu5KSloPY1
+    cgWgYTVxKnwKjF3dh66HYnXf2uUifUE4h1E3FMstyLeo0veSG40Pns4UVvAZ+Q6F
+    zAXrb/DCogEv1EZrr6BRTwC7gJ/vgJQkG2z0sdOU9hsj7zSnZYb85/7Z+ogv4qm5
+    Bu/oMrQswwmnCVmqRiucnrw8xolMLzNFjHic31onP1szt7p2uaqq53EJOtbbDUPJ
+    xJnUnPncloSVFGlsa+UxoOCIDsqW5GrWUGvLRsGXjwNE7pB1khHdSYXWaTWyQvAE
+    s5EAWU7rslToycUeLsuirUeTqePBrPZEcqFBFPR6Ty/caiM=
+    -----END CERTIFICATE-----
+imageContentSources:
+  - mirrors:
+    - bastion.lab.local:5000/ocp4/openshift4
+    source: quay.io/openshift-release-dev/ocp-release-nightly
+  - mirrors:
+    - bastion.lab.local:5000/ocp4/openshift4
+    source: quay.io/openshift-release-dev/ocp-v4.0-art-dev

@@ -1,0 +1,9 @@
+#!/usr/bin/env ansible-playbook
+---
+- import_playbook: 02-prepare-publicdns.yml
+- import_playbook: 03-prepare-install.yml
+- name: prepare and setup OCP 4
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+  - ../cluster.yml

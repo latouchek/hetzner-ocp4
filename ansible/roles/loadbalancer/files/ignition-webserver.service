@@ -3,7 +3,7 @@ Description=Ignition Webserver
 
 [Service]
 WorkingDirectory=/var/www/html
-ExecStart=/usr/bin/python -m SimpleHTTPServer
+ExecStart=/usr/bin/python3 -m http.server
 
 [Install]
 WantedBy=multi-user.target

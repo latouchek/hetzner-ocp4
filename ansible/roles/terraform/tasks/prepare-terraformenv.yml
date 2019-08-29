@@ -29,6 +29,10 @@
   template:
     src: provider.tf.j2
     dest: "{{ terraform_workdir }}/provider.tf"
+- name: Create terraform.tfvars file
+  template:
+    src: terraform.tfvars.j2
+    dest: "{{ terraform_workdir }}/terraform.tfvars"
 
 - name: Create kube.tf file
   template:

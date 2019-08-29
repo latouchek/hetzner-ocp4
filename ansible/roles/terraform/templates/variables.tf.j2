@@ -1,9 +1,3 @@
-openstack_user_name = "admin"
-openstack_tenant_name = "admin"
-openstack_password = "ayCMmnkyHHGpbkWWuHQVKkKpy"
-openstack_auth_url = "http://192.168.122.18:5000//v3"
-
-
 variable "openstack_user_name" {}
 variable "openstack_tenant_name" {}
 variable "openstack_password" {}
@@ -22,7 +16,7 @@ data "template_file" "user_data_bootstrap" {
 }
 
 variable "ssh_key_pair" {
-  default = "ocp-key"
+  default = "undercloud-key"
 }
 
 variable "availability_zone" {
@@ -33,10 +27,10 @@ variable "security_group" {
 	default = "allowall"
 }
 variable "masterflavor" {
-	default = "m1.large"
+	default = "ocp.master"
 }
 variable "workerflavor" {
-	default = "m1.large"
+	default = "ocp.worker"
 }
 variable "network" {
 	default  = "public-net"
@@ -47,7 +41,7 @@ variable "namemaster" {
  }
 variable "nameworker" {
     type = "list"
-    default = ["worker-0","worker-1","worker-2"]
+    default = ["worker-0","worker-1"]
 }
 
 variable "ipmaster" {
@@ -57,5 +51,5 @@ variable "ipmaster" {
 
 variable "ipworker" {
   type = "list"
-  default = ["192.168.222.34", "192.168.222.35", "192.168.222.36"]
+  default = ["192.168.122.34", "192.168.122.35", "192.168.122.36"]
 }

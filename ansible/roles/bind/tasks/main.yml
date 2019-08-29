@@ -14,12 +14,12 @@
     mode: 0644
     backup: yes
 
-- name: Install bind
-  yum:
-    name:
-      - bind
-      - bind-utils
-    state: present
+# - name: Install bind
+#   yum:
+#     name:
+#       - bind
+#       - bind-utils
+#     state: present
 
 - name: Copy named conf
   template:
