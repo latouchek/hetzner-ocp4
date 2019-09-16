@@ -16,7 +16,7 @@ data "template_file" "user_data_bootstrap" {
 }
 
 variable "ssh_key_pair" {
-  default = "undercloud-key"
+  default = "bastion"
 }
 
 variable "availability_zone" {
@@ -27,10 +27,10 @@ variable "security_group" {
 	default = "allowall"
 }
 variable "masterflavor" {
-	default = "ocp.master"
+	default = "m1.xlarge"
 }
 variable "workerflavor" {
-	default = "ocp.worker"
+	default = "m1.xlarge"
 }
 variable "network" {
 	default  = "public-net"

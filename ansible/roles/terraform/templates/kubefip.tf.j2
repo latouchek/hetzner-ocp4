@@ -26,12 +26,16 @@ resource "openstack_compute_servergroup_v2" "mysg" {
   policies = ["soft-anti-affinity"]
 }
 
+resource "openstack_networking_floatingip_v2" "myip" {
+  pool = "public-net"
+  count = "${length(var.namemaster)}"
+ }
 #
-# resource "openstack_compute_floatingip_associate_v2" "myip" {
-#   count       = "${length(var.namemaster)}"
-#   instance_id = "${openstack_compute_instance_v2.ocpmasterVM.*.id[count.index]}"
-#   floating_ip = "${openstack_networking_floatingip_v2.myip.*.address[count.index]}"
-# }
+resource "openstack_compute_floatingip_associate_v2" "myip" {
+   count       = "${length(var.namemaster)}"
+   instance_id = "${openstack_compute_instance_v2.ocpmasterVM.*.id[count.index]}"
+   floating_ip = "${openstack_networking_floatingip_v2.myip.*.address[count.index]}"
+ }
 
 
 resource "openstack_compute_instance_v2" "bootstrap" {

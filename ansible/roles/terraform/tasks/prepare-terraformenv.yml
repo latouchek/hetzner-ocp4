@@ -38,6 +38,13 @@
   template:
     src: kube.tf.j2
     dest: "{{ terraform_workdir }}/kube.tf"
+  when: floating_ip == 'no'
+  
+- name: Create kubefip.tf file
+  template:
+    src: kubefip.tf.j2
+    dest: "{{ terraform_workdir }}/kubefip.tf"
+  when: floating_ip == 'yes'
 
 - name: Create variables.tf file
   template:

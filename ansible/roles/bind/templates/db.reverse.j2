@@ -14,8 +14,8 @@ $ORIGIN {{ rev_domain }}.
 $TTL 1
 ; PTR records
 
-29        IN  PTR api.{{cluster_name}}.{{public_domain}}.
-29       IN  PTR api-int.{{cluster_name}}.{{public_domain}}.
+{{ host_bastion_ip.split(".")[3] }}    IN  PTR api.{{cluster_name}}.{{public_domain}}.
+{{ host_bastion_ip.split(".")[3] }}    IN  PTR api-int.{{cluster_name}}.{{public_domain}}.
 {{ host_bootstrap_ip.split(".")[3] }}  IN  PTR bootstrap.{{cluster_name}}.{{public_domain}}.
 {{ host_master_0_ip.split(".")[3] }}   IN  PTR master-0.{{cluster_name}}.{{public_domain}}.
 {{ host_master_1_ip.split(".")[3] }}   IN  PTR master-1.{{cluster_name}}.{{public_domain}}.
